@@ -1,0 +1,38 @@
+package servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class groupServlet
+extends HttpServlet {
+	/*
+	 * Server Applet의 줄임말
+	 * (서버 프로그램)
+	 * 
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//응답 컨텐츠 설정
+		resp.setContentType("text/html; charset=UTF-8");
+		//응답에 글쓰기
+		PrintWriter out = resp.getWriter();
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<meta charset='UTF-8'>");
+		out.println("<title>huhu</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h1>Welcome 너굴's website</h1>");
+		out.println("<img src='img/a.jpg'/>");
+		out.println("</body>");
+		out.println("</html>");
+		
+	}
+
+}

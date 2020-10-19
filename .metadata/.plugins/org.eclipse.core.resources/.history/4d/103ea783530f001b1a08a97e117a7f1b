@@ -1,0 +1,16 @@
+package servlet;
+
+public class HelloServlet {
+
+	public static void main(String[] args) {
+		
+		/*
+		 * Server Applet의 줄임말
+		 * (서버 프로그램)
+		 * 
+		 * 
+		 */
+
+	}
+
+}
