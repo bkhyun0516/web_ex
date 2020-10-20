@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idols">
+	<select id="selectOne" parameterType="int" resultType="Idol">
+		SELECT	idol_id idolId,
+				name,
+				height,
+				weight,
+				birth_date birthDate,
+				gender,
+				group_id groupId
+		FROM idols
+		WHERE idol_id = #{idolId}
+	</select>
+	<select id="selectOneByGroupId" parameterType="int" resultType="Idol">
+		SELECT	idol_id idolId, i.name name, height, weight,
+				birth_date birthDate, gender, g.name groupName,
+				i.group_id groupId
+		FROM idols i, groups g
+		WHERE i.group_id = g.group_id
+		AND i.idol_id=#{idolId}
+	</select>
+
+	
+	<select id="selectList" resultType="Idol">
+		SELECT	idol_id idolId,
+				name,
+				height,
+				weight,
+				birth_date birthDate,
+				gender,
+				group_id groupId
+		FROM idols
+		ORDER BY 1
+	</select>
+	<select id="selectListByGroupId" parameterType="int" resultType="Idol">
+		SELECT	idol_id idolId,
+				name,
+				height,
+				weight,
+				birth_date birthDate,
+				gender,
+				group_id groupId
+		FROM idols
+		WHERE group_id = #{groupId}
+		ORDER BY 1
+	</select>
+	
+	<insert id="insert" parameterType="Idol">
+		INSERT INTO idols(idol_id,
+				name,
+				height,
+				weight,
+				birth_date,
+				gender,
+				group_id) 
+		VALUES(idols_seq.nextval,#{name},#{height},#{weight},#{birthDate},#{gender},#{groupId})
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE idols
+		WHERE idol_id=#{idolId}
+	</delete>
+</mapper>
