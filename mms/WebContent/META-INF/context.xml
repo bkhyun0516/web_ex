@@ -1,0 +1,31 @@
+<?xml version="1.0"	encoding="UTF-8"?>
+<Context>
+	<Resource	
+		name="oraclexe"
+		auth="Container"
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="test"
+		password="1111"
+		type="javax.sql.DataSource"			
+		maxIdle="20"
+		maxTotal="20"
+		maxWaitMillis="-1"
+	/>
+</Context>
+<!--  
+ 	maxIdle
+ 	maxTotal: 최대갯수
+ 	
+ 	
+ 	커넥션 : 데이터베이스와  자바를 연결하는객체
+ 		
+ 	커넥션풀 : 커넥션 생성때  자원을 많이 소모하기때문에 
+ 	미리 커넥션을 여러개 만들어 놓고 필요시 사용 
+ 	
+ 	
+ 	 
+ 	커넥션풀 : type="javax.sql.DataSource"
+ 	maxWaitMillis="-1" -> 무한히 기다린다.
+ 	
+-->	

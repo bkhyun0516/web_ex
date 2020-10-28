@@ -45,7 +45,7 @@
 			</select>일
 		</p>
 		<p>
-			<button>그룹등록</button>
+			<button class="btn">그룹등록</button>
 		</p>
 	</fieldset>
 	</form>

@@ -42,7 +42,9 @@
 		<dt>그룹명</dt>
 		<dd><%=group.getName() %></dd>
 		<dt>데뷔일</dt>
-		<dd><%=group.getDebutDate() %></dd>
+		<dd><%=group.getDebutYear()%>년 
+			<%=group.getDebutMonth() %>월
+			<%=group.getDebutDay() %>일</dd>
 	</dl>
 	<%if(idols.isEmpty()){%>
 		<h2><i class="far fa-sad-cry"></i>아이돌 없음</h2>
@@ -56,6 +58,7 @@
 		</ul>
 	<% }%>
 	
+	<a class="btn" href="/groupUpdateForm.jsp?groupId=<%=groupId %>"><i class="fas fa-wrench"></i> 수정</a>
 	<a class="btn" href="/groupList.jsp"><i class="fas fa-user-friends"></i> 목록으로</a>
 </body>
 </html>

@@ -9,14 +9,15 @@
 				weight,
 				birth_date birthDate,
 				gender,
-				group_id groupId
+				group_id groupId,
+				profile_image profileImage
 		FROM idols
 		WHERE idol_id = #{idolId}
 	</select>
 	<select id="selectOneByGroupId" parameterType="int" resultType="Idol">
 		SELECT	idol_id idolId, i.name name, height, weight,
 				birth_date birthDate, gender, g.name groupName,
-				i.group_id groupId
+				i.group_id groupId, profile_image profileImage
 		FROM idols i, groups g
 		WHERE i.group_id = g.group_id
 		AND i.idol_id=#{idolId}
@@ -30,9 +31,25 @@
 				weight,
 				birth_date birthDate,
 				gender,
-				group_id groupId
+				group_id groupId,
+				profile_image profileImage
 		FROM idols
 		ORDER BY 1
+	</select>
+	<select id="selectTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM idols
+	</select>
+	<select id="selectPageList" parameterType="PageVO" resultType="Idol">
+	SELECT idolId, name, height, weight,
+			birthDate, gender, groupId, profileImage 
+	FROM (SELECT	idolId, name, height, weight, 
+		 			birthDate, gender, groupId, profileImage,rownum r	 
+			FROM (SELECT	idol_id idolId, name, height, weight,
+							birth_date birthDate, gender, group_id groupId, profile_image profileImage
+					FROM idols
+					ORDER BY 1))	
+	WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	<select id="selectListByGroupId" parameterType="int" resultType="Idol">
 		SELECT	idol_id idolId,
@@ -41,21 +58,32 @@
 				weight,
 				birth_date birthDate,
 				gender,
-				group_id groupId
+				group_id groupId,
+				profile_image profileImage
 		FROM idols
 		WHERE group_id = #{groupId}
 		ORDER BY 1
 	</select>
-	
+	<update id="update" parameterType="Idol">
+		UPDATE idols
+		SET name=#{name},height=#{height},weight=#{weight},birth_date=#{birthDate},gender=#{gender},group_id=#{groupId},profile_image=#{profileImage}
+		WHERE idol_id =#{idolId}
+	</update>
 	<insert id="insert" parameterType="Idol">
+	<selectKey order="BEFORE" resultType="int" keyProperty="idolId">
+	<!-- order 기본값은  after -->
+		SELECT idols_seq.nextval
+		FROM DUAL
+	</selectKey>
 		INSERT INTO idols(idol_id,
 				name,
 				height,
 				weight,
 				birth_date,
 				gender,
-				group_id) 
-		VALUES(idols_seq.nextval,#{name},#{height},#{weight},#{birthDate},#{gender},#{groupId})
+				group_id,
+				profile_image) 
+		VALUES(#{idolId},#{name},#{height},#{weight},#{birthDate},#{gender},#{groupId},#{profileImage})
 	</insert>
 	<delete id="delete" parameterType="int">
 		DELETE idols

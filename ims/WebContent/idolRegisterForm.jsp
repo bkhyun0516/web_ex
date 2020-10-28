@@ -49,7 +49,7 @@
 <body>
 <h1><a href="/"><i class="fas fa-star-of-david"></i>Awesome Idol Management Service<i class="fas fa-star-of-david"></i></a></h1>
 	<h2>아이돌 등록폼</h2>
-	<form action="/idolRegister.jsp" method="post">
+	<form action="/idolRegister.jsp" method="post" enctype="multipart/form-data">
 	<fieldset>
 	<legend>아이돌 등록폼</legend>
 		<p>
@@ -100,7 +100,10 @@
 			<%} %>
 			</select>일
 		</p>
-		
+		<p>
+			<label for="profile"> 프로필사진 </label>
+			<input type="file" id="profile" name="profile"/>
+		</p>
 		<p>
 			<strong>그룹 선택</strong>
 			<%for(Group group:groups){ %>
@@ -112,7 +115,7 @@
 		</p>
 		
 		<p>
-			<button>아이돌등록</button>
+			<button class="btn">아이돌등록</button>
 		</p>
 		</fieldset>
 	</form>

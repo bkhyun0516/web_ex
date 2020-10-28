@@ -14,12 +14,37 @@
 		FROM groups
 		WHERE group_id = #{groupId}
 	</select>
+
+	<select id="selectPageList" parameterType="PageVO" resultType="Group">
+		SELECT groupId, name, debutDate
+		FROM(SELECT groupId, name, debutDate, rownum r
+			FROM(SELECT	group_id groupId, name, debut_date debutDate
+					FROM groups
+					ORDER BY 1))	
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<select id="selectTotal" resultType="int" >
+		SELECT COUNT(*)
+		FROM groups
+	</select>
+	
 	<insert id="insert" parameterType="Group">
+		<selectKey order="BEFORE"
+			 keyProperty="groupId"
+			 resultType="int">
+			SELECT groups_seq.nextval
+			FROM dual
+		</selectKey>
 		INSERT INTO groups(group_id, name, debut_date) 
-		VALUES(groups_seq.nextval, #{name},#{debutDate})
+		VALUES(#{groupId}, #{name},#{debutDate})
 	</insert>
 	<delete id="delete" parameterType="int">
 		DELETE groups
 		WHERE group_id = #{groupId}
 	</delete>
+	<update id="update" parameterType="Group">
+		Update groups
+		SET name = #{name}, debut_date=#{debutDate}
+		WHERE group_id = #{groupId}
+	</update>
 </mapper>

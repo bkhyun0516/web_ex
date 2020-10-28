@@ -16,12 +16,14 @@
 	Group group = new Group();
 	group.setName(name);
 	group.setDebutDate(Date.valueOf(year+"-"+month+"-"+date));
+	
 	int result = GroupsDAO.insert(group);
-
+	//mybatis의 selectKey기능을 사용하여 group객체의 groupId를 얻을수 있다
+	//call by reference 방식
 
 
 	// 이 페이지에서 insert한 후
 	// groupList.jsp로 이동(리다이렉트)
-	response.sendRedirect("/groupList.jsp");
+	response.sendRedirect("/groupDetail.jsp?groupId="+group.getGroupId());
 
 %>
