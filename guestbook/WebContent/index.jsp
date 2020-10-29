@@ -24,7 +24,10 @@
 	int numBlock = 3;
 	String url="/index.jsp";
 	String param="page=";
-	String paginate = PaginateUtil.getPaginate(pageNo, total, numPage, numBlock, url, param);	
+	String paginate = PaginateUtil.getPaginate(pageNo, total, numPage, numBlock, url, param);
+	
+	String ip = request.getRemoteAddr();
+	System.out.println(ip);
 %>    
     
 <!DOCTYPE html>
@@ -59,8 +62,10 @@
 							</strong>
 							<time><i class="far fa-clock"></i>
 							<%=guest.getRegdate()%></time>
+							<%if(ip.equals(guest.getIp())){%>
 							<a href="/delete.guest?no=<%=guest.getNo()%>" class="delete btn"><i class="far fa-trash-alt"></i> 삭제</a>
 							<a href="/editForm.jsp?no=<%=guest.getNo()%>" class="update btn"><i class="far fa-edit"></i> 수정</a>
+							<%} %>
 						</h3>
 						<p><%=guest.getContents()%></p>
 					</li>
