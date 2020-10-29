@@ -72,12 +72,11 @@
 <%for(Phone phone:list){ %>
 <tr>
 	<th><%=phone.getName() %></th>
-	<td><i class="fas fa-mobile"></i> <%=phone.getPhone1() %>-<%=phone.getPhone2() %>-<%=phone.getPhone3() %></td>
+	<td><i class="fas fa-mobile"></i> <%=phone.getFullPhone() %></td>
 	<td>
-	<i class="fa fa-<%if(phone.getGender()=='F'){ %>fe<%} %>male"></i>
-  <%=phone.getGender() %>
+  <%=phone.getGenderIcon() %>
   </td>
-  <td title="<%=phone.getBirthDate() %>"><%=phone.getBirthDate() %></td>
+  <td title="<%=phone.getBirthDate() %>"><%=phone.getKoreanAge() %>살</td>
 	<td>
 		<a href="updateForm.jsp?no=<%=phone.getNo() %>" class="btn update"><i class="fa fa-wrench"></i> 수정</a>
 	</td>
