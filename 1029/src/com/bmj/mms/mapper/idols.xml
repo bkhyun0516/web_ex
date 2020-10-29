@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idols">
+	
+	<select id="selectList" resultType="Idol">
+		SELECT	idol_id idolId,
+				name,
+				height,
+				weight,
+				birth_date birthDate,
+				gender,
+				group_id groupId,
+				profile_image profileImage
+		FROM idols
+		ORDER BY 1
+	</select>
+	
+</mapper>
