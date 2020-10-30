@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>템플릿 복습</title>
+</head>
+<body>
+
+
+
+<script type="text/template" id="xxx">
+	안녕하세요?
+</script>
+
+<!-- 
+		<@ 
+			'type="text/template"'에서 자바 스크립트 쓰게해준다.
+			변수 받는것도 <@= @>없이 가능한 듯
+		 @>
+ -->
+<script type="text/template" id="yyy">
+<@ //gkgkgkgkgkgkkgkggkgkgk @>
+	<@=c@>
+	ex)a:<@=a@> : b:<@=b@>
+</script>
+<script src="/js/jquery.js"></script>
+<script src="/js/underscore-min.js"></script>
+<script>
+	_.templateSettings = {interpolate: /\<\@\=(.+?)\@\>/gim,evaluate: /\<\@([\s\S]+?)\@\>/gim,escape: /\<\@\-(.+?)\@\>/gim};
+	const a=_.template("안녕하세요?");			//함수 a와  함수 b는
+	const b=_.template($("#xxx").html());	//같다
+	
+	const tmp= _.template($("#yyy").html());
+	alert(tmp({"a":10,"b":100,"c":"<@=X @>는 X를 변수로 다룬다는 뜻."}));
+	
+</script>
+</body>
+</html>

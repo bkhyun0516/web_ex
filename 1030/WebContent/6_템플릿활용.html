@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>underscore 템플릿 활용</title>
+</head>
+<body>
+<h1>음악목록</h1>
+<table border="1">
+	<thead>
+		<tr>
+			<th>제목</th>
+			<th>가수</th>
+			<th>장르</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="3">아직 없다.</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<script type="text/template" id="musicTmpl">
+<% _.each(musicList,function(music) {%>
+<tr>
+	<th><%=music.title%></th>
+	<td><%=music.artist%></td>
+	<td><%=music.genre%></td>
+</tr>
+<%}); %>
+</script>
+<script src="/js/jquery.js"></script>
+<script src="/js/underscore-min.js"></script>
+
+<script>
+const musicListData =[
+	{"title":"너를 만나","artist":"폴킴","genre":"발라드"},
+	{"title":"Between Us","artist":"jayla darden","genre":"R&B"},
+	{"title":"왜 이리 시끄러운 것이냐","artist":"머쉬베놈","genre":"힙합"},
+	{"title":"애국가","artist":"안익태","genre":"국가"}
+	]
+const xxx = $("#musicTmpl").html();
+const musicTmpl = _.template(xxx);
+$("tbody").html(musicTmpl({musicList:musicListData}));//객체는 명과 값으로 구성되어 있을 것인데....
+
+
+// html은 <>을 요소로 읽고 text는 그냥 문자열로 읽어온다!
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>moment 라이브러리</title>
+</head>
+<body>
+
+
+
+
+<!--
+	<script src="/js/jquery.js"></script>
+	json: 문자열이다(자바스크립트의 객체와 배열형식을 가진 문자열이다)
+	
+	날짜를 어떻게 문자열로? 유닉스타임으로!
+
+-->
+
+<script src="/js/moment-with-locales.js"></script>
+<script>
+/* 
+  	javascript의 대표적인 라이브러리
+	1) jquery
+	- DOM 선택 쉽다(CSS 선택자 활용)
+	- 이벤트 처리 쉽다.
+	- ajax 쉽다.
+	- 컨텐츠 변경 (css,text, html, val)
+	- 이펙트, 애니메이션이 쉽다.
+	
+	2)moment
+	- 날짜 관련 라이브러리
+	
+	3) underscore
+	- 배열 혹은 컬렉션에 대한  편리한 기능을 가지고 있다.
+	- 템플릿 엔진
+ */
+/*
+	const date= new Date(736786800000);//현재시간
+	const fullTime = date.getFullYear()+"년"+
+					(date.getMonth()+1)+"월"+
+					date.getDate()+"일";
+	alert(fullTime);
+*/
+	//한국의 날짜 표시 형식으로 변환
+	moment.locale("ko");
+	// 모멘트 객체 생성(인자 유닉스타임)
+	const date = moment(736786800000);
+	const year = date.year();
+	const month = date.month();
+	const format= date.format("YYYY년 MM월 DD일 hh시 mm분 ss초");
+	alert(date.fromNow());// 몇분전
+	console.log(format);
+</script>
+
+</body>
+</html>

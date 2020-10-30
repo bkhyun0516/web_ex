@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>each의 여러가지 활용</title>
+</head>
+<body>
+<script src="/js/jquery.js"></script>
+<script src="/js/underscore-min.js"></script>
+<script>
+const musicList =[
+	{"title":"너를 만나","artist":"폴킴","genre":"발라드"},
+	{"title":"Between Us","artist":"jayla darden","genre":"R&B"},
+	{"title":"왜 이리 시끄러운 것이냐","artist":"머쉬베놈","genre":"힙합"},
+	{"title":"애국가","artist":"안익태","genre":"국가"}
+	];
+/*
+	
+	배열을 반복하는 each는
+	1) jquery의 메서드
+	2) jquery의 함수
+	3)  underscore의 함수
+	
+*/
+//1)1번의 활용
+	
+	$(musicList).each(function(idx){
+		//여기서 객체는 this
+		console.log(idx + "번" + this.title);
+	});
+	/*
+	$(musicList).each(function(idx,music){
+		//여기서 객체는 this
+		alert(idx + "번" + music.title);
+	});
+	*/
+	
+// 2) 2번의 활용
+	/*
+	$.each(musicList,function(idx){
+		alert(idx + "번" + this.title);
+	});
+	*/
+	$.each(musicList,function(idx, music){
+		console.log(idx + "번" +music.title);
+	});
+	
+	
+	//위에 것들은 필요없는 index를 가져와야한다.
+	// 또한 this는 무엇인지 정확하게 알기 어려운 단점이 있다. 
+
+	
+	// 3) 3번의 활용
+	/*
+	_.each(musicList,function(music,idx){
+		alert(idx + "번" + music.title);
+	});//this를 아예 못쓰지만 idx를 안가져올 수 있는 장점이 있다.
+	*/
+	_.each(musicList,function(music){
+		alert(music.title);
+	});
+	
+</script>
+</body>
+</html>

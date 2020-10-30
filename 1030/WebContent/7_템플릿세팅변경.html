@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>underscore 템플릿 세팅 변경</title>
+</head>
+<body>
+<h1>배우목록</h1>
+<ul>
+	
+</ul>
+<script type="text/template" id="actorTmpl">
+<@ _.each(actors,function(actor){ @>
+	<li class="actorItem">
+		<h3><@=actor.name @></h3>
+		<dl>
+			<dt>키</dt>
+			<dd><@=actor.height@></dd>
+			<dt>몸무게</dt>
+			<dd><@=actor.weight@></dd>
+		</dl>
+	</li>
+<@ }) @>
+</script>
+<script src="/js/jquery.js"></script>
+<script src="/js/underscore-min.js"></script>
+<script>
+	/*
+		언더스코어 템플릿의 문법이 jsp와
+		동일하기 때문에 %를 @로 바꿔주는
+		세팅이 필요하다.
+	*/
+	//% -> @ 으로
+	_.templateSettings = {interpolate: /\<\@\=(.+?)\@\>/gim,evaluate: /\<\@([\s\S]+?)\@\>/gim,escape: /\<\@\-(.+?)\@\>/gim};
+	const actorTmpl= _.template($("#actorTmpl").html());
+	function getActorList(){
+		$.ajax({
+			url:"/ajax/actors.json",
+			dateType:"json",//생략시 json 
+			type:"GET",//생략시 GET방식
+			success:function(json){
+				$("ul").html(actorTmpl({actors:json}));
+			},
+			error:function(){
+				alert("에러ㅠㅠ");
+			}
+		});
+	};//getActorList() end
+	getActorList();
+/*
+<@ for(let actor of actors){ @>
+<li class="actorItem">
+	<h3><@=actor.name@></h3>
+	<dl>
+		<dt>키</dt>
+		<dd><@=actor.height@></dd>
+		<dt>몸무게</dt>
+		<dd><@=actor.weight@></dd>
+	</dl>
+</li>
+<@ } @>
+
+===========================================
+<@ for(let i=0; i<actors.length;i++){ @>
+	<li class="actorItem">
+		<h3><@=actors[i].name@></h3>
+		<dl>
+			<dt>키</dt>
+			<dd><@=actors[i].height@></dd>
+			<dt>몸무게</dt>
+			<dd><@=actors[i].weight@></dd>
+		</dl>
+	</li>
+<@ } @>
+
+===============================================
+<@ _.each(actors,function(actor){ @>
+	<li class="actorItem">
+		<h3><@=actor.name @></h3>
+		<dl>
+			<dt>키</dt>
+			<dd><@=actor.height@></dd>
+			<dt>몸무게</dt>
+			<dd><@=actor.weight@></dd>
+		</dl>
+	</li>
+<@ }) @>
+*/
+
+</script>
+
+</body>
+</html>

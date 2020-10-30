@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>each연습</title>
+</head>
+<body>
+<script src="/js/jquery.js"></script>
+<script src="/js/underscore-min.js"></script>
+<script>
+	const bts = ["슈가","RM","제이홉","뷔","지민","진","정국"];
+	_.each(bts,function(member){
+		alert(member);
+	});
+	for(let i=0;i<bts.length;i++){
+		console.log(bts[i]);
+	}
+	$(bts).each(function(idx,member){
+		console.log(idx+member);
+	});
+	$.each(bts,function(idx,member){
+		console.log(member);
+	});
+</script>
+</body>
+</html>
