@@ -55,8 +55,14 @@
 	</tbody>
 </table>
 <script src="/js/jquery.js"></script>
+<script src="/js/moment-with-locales.js"></script>
+<script src="/js/underscore-min.js"></script>
 <script>
+	//const moviesTmpl = _.template();
 	const $loader = $("#loader");
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	function getMovies(){
 			$loader.show();
 			$.ajax({
@@ -65,16 +71,20 @@
 				type:"GET",
 				success:function(json){
 					$("tbody").empty();
-					$(json).each(function(){
+					/*
+					_.each(movies,function(movie){
 						$tr=$("<tr>");
-						$th=$("<th>").text(this.no);
-						$td1=$("<td>").text(this.name);
-						$td2=$("<td>").text(this.director);
-						$td3=$("<td>").text(this.releaseDate);//유닉스타임으로 와서 나중에 라이브러리로 변환해준다.
-						$td4=$("<td>").text(this.audienceNum);
-						$td5=$("<td>").text(this.genre);
+						$th=$("<th>").text(movie.no);
+						$td1=$("<td>").text(movie.name);
+						$td2=$("<td>").text(movie.director);
+						$td3=$("<td>").text(moment(movie.releaseDate).format("YYYY년 M월 DD일"));//유닉스타임으로 온 정보를
+																						//라이브러리로 변환해준다.
+						$td4=$("<td>").text(numberWithCommas(movie.audienceNum));
+						$td5=$("<td>").text(movie.genre);
 						$tr.append($th,$td1,$td2,$td3,$td4,$td5).appendTo("tbody");
 					});
+					*/
+					//$("tbody").html(moviesTmpl({movies:json}));
 					$loader.hide();
 				},
 				error:function(){
@@ -83,7 +93,12 @@
 				}
 			});	
 	}//getMovies() end
+	/*
+		jsp는 서버에서 템플릿을 완성하여 전달하여 무겁다.
+		ajax는 브라우저가 전달받은 자바스크립트 코드를 사용하여 직접 DOM을 수정, 가볍다.
 	
+	
+	*/
 	
 	getMovies();
 </script>

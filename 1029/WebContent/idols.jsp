@@ -54,6 +54,7 @@
 </table>
 <script src="/js/jquery.js"></script>
 <script src="/js/moment-with-locales.js"></script>
+<script src="/js/underscore-min.js"></script>
 <script>
 	const $loader = $("#loader");
 	function getMovies(){
@@ -70,7 +71,7 @@
 						$td1=$("<td>").text(this.name);
 						$td2=$("<td>").text(this.height);
 						$td3=$("<td>").text(this.weight);
-						$td4=$("<td>").text(moment(new Date(this.birthDate)).format("YYYY-MM-DD"));//유닉스타임으로 와서 나중에 라이브러리로 변환해준다.
+						$td4=$("<td>").text(moment(this.birthDate).format("YYYY-MM-DD"));//유닉스타임으로 와서 나중에 라이브러리로 변환해준다.
 						//$td4=$("<td>").text(new Date(this.birthDate));//유닉스타임으로 와서 나중에 라이브러리로 변환해준다.
 						$td5=$("<td>").text(this.gender);
 						$td6=$("<td>").text(this.groupId);
