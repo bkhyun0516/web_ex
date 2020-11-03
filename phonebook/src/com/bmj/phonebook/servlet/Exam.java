@@ -24,7 +24,7 @@ public class Exam extends HttpServlet{
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h2>안녕하세요?</h2>");
-		out.println("<a href=\"/index.jsp\">메인 페이지로</a>");
+		out.println("<a href=\"/main.jsp\">메인 페이지로</a>");
 		out.println("</body>");
 		out.println("</html>");
 	}

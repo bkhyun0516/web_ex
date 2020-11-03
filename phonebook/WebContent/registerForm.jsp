@@ -45,26 +45,17 @@
 				<div class="row">
 					<label for="age">생년월일</label><span id="age">
 				<select id="year" name="year">
-				<%for(int i=2020;i>1900;i--) {%>
-					<option value="<%=i %>"><%=i %></option>
-				<%} %>
 				</select><em>년</em>
 				<select id="month" name="month">
-				<%for(int i=1;i<13;i++) {%>
-					<option value="<%=i%>"><%=i%></option>
-				<%} %>
 				</select><em>월</em>
 				<select id="date" name="date">
-				<%for(int i=1;i<32;i++) {%>
-					<option value="<%=i %>"><%=i %></option>
-				<%} %>
 				</select><em>일</em>
 				</span>
 				</div>
 				<div class="row">
 					<label for="gender">성 별</label>
 					<span id="gender">
-				<input type="radio" id="female" value="F" name="gender"/>
+				<input type="radio"  checked id="female" value="F" name="gender"/>
 				<label for="female"><i class="fa fa-female"></i> 여 자</label>
 				<input type="radio" id="male" value="M" name="gender" />
 				<label for="male"><i class="fa fa-male"></i> 남 자</label>
@@ -83,5 +74,43 @@
 		</form>
 	</div><!-- //formBox  -->
 <%@ include file="/WEB-INF/template/footer.jsp" %>
+
+<script src="/js/create-date.js"></script>
+<script>
+//이름 정규 표현식 객체
+const nameExp = /^[ㄱ-힣|\d]{2,6}$/;
+//2번째 전화번호 정규표현식 객체
+const phone2Exp = /^[\d]{3,4}$/;
+//3번째 전화번호 정규표현식 객체
+const phone3Exp = /^[\d]{4}$/;
+const $name = $("#name");
+const $phone2 = $("#phone2");
+const $phone3 = $("#phone3");
+$("form").on("submit",function(e){
+	//입력한 이름
+	const name = $name.val();
+	if(!nameExp.test(name)){
+		alert("이름을 2~6글자 한글 및 숫자로 입력해 주세요");
+		$name.val("").focus();
+		return false;
+	}
+	const phone2 = $phone2.val();
+	if(!phone2Exp.test(phone2)){
+		alert("전화번호 2번째 자리를 3~4자리 숫자로 제대로 입력해주세요");
+		$phone2.val("").focus();
+		return false;
+	}
+	const phone3 = $phone3.val();
+	if(!phone3Exp.test(phone3)){
+		alert("전화번호 3번째 자리를 4자리 숫자로 제대로 입력해주세요");
+		$phone3.val("").focus();
+		return false;
+	}
+	
+});// submit() end
+
+
+
+</script>
 </body>
 </html>

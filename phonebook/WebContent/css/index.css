@@ -1,51 +1,115 @@
 @charset "UTF-8";
 
-#phoneBox {
-    width:1100px;
-    margin: auto;
+body {
+    font-family:"Noto Sans KR", sans-serif;
 }
-
-#phoneBox table {
-    border-collapse: collapse;
-    border:1px solid #BCAAA4;
-    width:1100px;
-    font-size:23px;
-    font-weight:300;
+#intro {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: .5s cubic-bezier(1,.01,.8,1.16) .3s;
 }
-#phoneBox thead tr {
-    background:#BCAAA4;
-    font-size:25px;
-    color:#fff;
-    font-weight:600;
-    text-shadow:1px 1px 1px #333;
-}
-
-#phoneBox th, #phoneBox td {
-    padding:10px 16px;
-    border:1px solid #BCAAA4;
+#loginBox {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -200px 0 0 -300px;
+    z-index: 1;
     text-align: center;
+}
+
+#loginBox h1 {
+    font-size:60px;
+    color:#fff;
+    font-weight:900;
+    margin-bottom:20px;
+    text-shadow: 0 0 3px #fff;
+}
+#loginBox h1 * {
     vertical-align: middle;
 }
-
-#phoneBox tbody tr:nth-child(even) {
-    background:#eaeaea;
+#logo {
+    position: relative;
+    top:3px;
 }
 
-#phoneBox .box_btn {
-    text-align: right;
-    padding:20px;
+#loginBox input, #loginBtn {
+    width: 450px;
+    height: 50px;
+    padding: 5px 10px;
+    border: 1px solid #fff;
+    font: 300 20px/50px "Noto Sans KR", sans-serif;
+    margin: 4px auto;
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    transition: .2s ease;
+    position: relative;
+    display: block;
 }
-#profileImage {width:160px;}
-#name {width:160px;}
-#phone {width:280px;}
-#gender {width:120px;}
-#age { width:100px;}
-#update {width:140px;}
-#delete { width:140px;}
+#loginBox input:focus {
+    background: rgba(255,255,255,.9);
+    color: #333;
+}
+#loginBtn {
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: content-box;
+}
 
-#phoneBox .no_data {
-    font-size:26px;
-    padding-top:30px;
-    padding-bottom:30px;
-    font-weight:700;
+#loginBtn:hover {
+    background: rgba(0, 125, 255,.9);
+}
+
+#joinLink {
+    width: 450px;
+    height: 50px;
+    padding: 5px 10px;
+    font: 300 20px/50px "Noto Sans KR", sans-serif;
+    margin: 4px auto;
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    transition: .2s ease;
+    position: relative;
+    display: block;
+    text-decoration: none;
+}
+#joinLink:hover {
+    background: rgba(255,255,255,.9);
+    color: #333;
+}
+
+#videoContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+#videoContainer::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.5);
+}
+#videoContainer > video {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#msgBox {
+    margin:10px;
+    position: relative;
+    text-align: center;
+    color:#fff;
+    font-size:21px;
+    font-weight: 900;
 }

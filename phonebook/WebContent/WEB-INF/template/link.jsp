@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" href="/css/reset.css"/>
-	<link rel="stylesheet" href="/css/all.min.css"/>
-	<link rel="stylesheet" href="/css/notosanskr.css"/>
-	<link rel="icon" href="/favicon.png">
-	<link rel="stylesheet" href="/css/defaultCustom.css"/>
+<link rel="stylesheet" href="/css/all.min.css"/>
+<link rel="stylesheet" href="/css/notosanskr.css"/>
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/defaultCustom.css"/>
+<script src="/js/jquery.js"></script>
+<script src="/js/moment-with-locales.js"></script>

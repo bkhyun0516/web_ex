@@ -8,24 +8,26 @@
 		WHERE no = #{no}
 	</select>
 	<select id="selectList" parameterType="PageVO" resultType="Phone">
-		SELECT no, name, phone, gender, birthDate, regdate
-		FROM	(SELECT no, name, phone, gender, birthDate, regdate, rownum r
-				FROM(	SELECT no, name, phone, gender, birth_date birthDate, regdate
+		SELECT no, name, phone, gender, birthDate, regdate, memberNo, faceImage
+		FROM	(SELECT no, name, phone, gender, birthDate, regdate, memberNo, faceImage, rownum r
+				FROM(	SELECT no, name, phone, gender, birth_date birthDate, regdate ,member_no memberNo, face_image faceImage
 						FROM phonebook
+						WHERE member_no = #{memberNo}
 						ORDER BY 2))
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
-	<select id="selectTotal" resultType="int">
+	<select id="selectTotal" parameterType="int" resultType="int">
 		SELECT COUNT(*)
 		FROM phonebook
+		WHERE member_no= #{memberNo}
 	</select>
 	<delete id="delete" parameterType="int">
 		DELETE phonebook
 		WHERE no=#{no}
 	</delete>
 	<insert id="insert" parameterType="Phone">
-		INSERT INTO phonebook(no,name,phone,gender,birth_date,regdate)
-		VALUES(phonebook_seq.nextval,#{name},#{phone},#{gender},#{birthDate},systimestamp)
+		INSERT INTO phonebook(no,name,phone,gender,birth_date,regdate,face_image,member_no)
+		VALUES(phonebook_seq.nextval,#{name},#{phone},#{gender},#{birthDate},systimestamp,'default.jpg',#{memberNo})
 	</insert>
 	<update id="update" parameterType="Phone">
 	UPDATE phonebook

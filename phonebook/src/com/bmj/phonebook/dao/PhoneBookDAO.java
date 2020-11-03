@@ -37,11 +37,11 @@ public class PhoneBookDAO {
 		}//try ~ catch ~ finally end
 		return null;
 	}
-	public static int selectTotal(){
+	public static int selectTotal(int memberNo){
 		SqlSession session = null;
 		try {
 			session= SqlSessionUtil.getSession();
-			return session.selectOne("phonebook.selectTotal");
+			return session.selectOne("phonebook.selectTotal",memberNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

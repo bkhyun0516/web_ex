@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bmj.phonebook.dao.PhoneBookDAO;
 import com.bmj.phonebook.vo.Phone;
@@ -24,6 +25,7 @@ public class Update extends HttpServlet {
 		String year = req.getParameter("year");
 		String month = req.getParameter("month");
 		String date = req.getParameter("date");
+		String name = req.getParameter("name");
 		
 		int no = Integer.parseInt(noStr);
 		String phone = phone1+phone2+phone3;
@@ -31,8 +33,12 @@ public class Update extends HttpServlet {
 		char gender = genderStr.charAt(0);
 		
 		Phone p = new Phone(no, phone, gender, birthDate);
-		PhoneBookDAO.update(p);
-		resp.sendRedirect("/index.jsp");
+		int result=PhoneBookDAO.update(p);
+		if(result==1) {
+			HttpSession session= req.getSession();
+			session.setAttribute("msg", name+"님의  정보를 전화번호부에서 잘 수정하였습니다.");
+		}
+		resp.sendRedirect("/main.jsp");
 		
 	}
 }

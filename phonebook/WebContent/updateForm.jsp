@@ -28,7 +28,7 @@
 				<legend class="screen_out">전화번호 수정폼</legend>
 				<div class="row">
 					<label for="name">이 름</label>
-					<input id="name" name="name" value="<%=phone.getName() %>" disabled
+					<input id="name" name="name" value="<%=phone.getName() %>" readOnly
 						   title="2~6글자 한글과 숫자로만 입력해주세요."
 						   placeholder="이름입력" />
 				</div>
@@ -56,19 +56,13 @@
 				<div class="row">
 					<label for="age">생년월일</label><span id="age">
 				<select id="year" name="year">
-				<%for(int i=2020;i>1900;i--) {%>
-					<option <%if(phone.getYear()==i){ %> selected <%} %> value="<%=i %>"><%=i %></option>
-				<%} %>
+					<option  selected  value="<%=phone.getYear() %>"><%=phone.getYear() %></option>
 				</select><em>년</em>
 				<select id="month" name="month">
-				<%for(int i=1;i<13;i++) {%>
-					<option <%if(phone.getMonth()==i){ %> selected <%} %> value="<%=i%>"><%=i%></option>
-				<%} %>
+					<option selected  value="<%=phone.getMonth()%>"><%=phone.getMonth()%></option>
 				</select><em>월</em>
 				<select id="date" name="date">
-				<%for(int i=1;i<32;i++) {%>
-					<option <%if(phone.getDate()==i){ %> selected <%} %> value="<%=i %>"><%=i %></option>
-				<%} %>
+					<option selected value="<%=phone.getDate() %>"><%=phone.getDate() %></option>
 				</select><em>일</em>
 				</span>
 				</div>
@@ -94,5 +88,34 @@
 		</form>
 	</div><!-- //formBox  -->
 <%@ include file="/WEB-INF/template/footer.jsp" %>
+<script src="/js/create-date.js"></script>
+<script>
+
+//2번째 전화번호 정규표현식 객체
+const phone2Exp = /^[\d]{3,4}$/;
+//3번째 전화번호 정규표현식 객체
+const phone3Exp = /^[\d]{4}$/;
+const $phone2 = $("#phone2");
+const $phone3 = $("#phone3");
+$("form").on("submit",function(e){
+	
+	const phone2 = $phone2.val();
+	if(!phone2Exp.test(phone2)){
+		alert("전화번호 2번째 자리를 3~4자리 숫자로 제대로 입력해주세요");
+		$phone2.val("").focus();
+		return false;
+	}
+	const phone3 = $phone3.val();
+	if(!phone3Exp.test(phone3)){
+		alert("전화번호 3번째 자리를 4자리 숫자로 제대로 입력해주세요");
+		$phone3.val("").focus();
+		return false;
+	}
+	
+});// submit() end
+
+
+
+</script>
 </body>
 </html>

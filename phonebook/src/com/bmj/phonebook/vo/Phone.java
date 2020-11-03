@@ -13,6 +13,25 @@ public class Phone {
 	private Calendar calendar;
 	private int nowYear;
 	private int nowMonth,nowDate;
+	private String faceImage;
+	private int memberNo;
+	
+	public String getFaceImage() {
+		return faceImage;
+	}
+
+	public void setFaceImage(String faceImage) {
+		this.faceImage = faceImage;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
 	public Phone() {
 		//마이베티스가 생성할때는 무조건 기본생성자로 생성함
 		// 꼭 기본생성자 만들어야 함
@@ -24,7 +43,8 @@ public class Phone {
 		nowDate=calendar.get(Calendar.DATE);
 	}
 	
-	public Phone(String name, String phone, char gender, Date birthDate) {
+	public Phone(int memberNo,String name, String phone, char gender, Date birthDate) {
+		this.memberNo= memberNo;
 		this.name = name;
 		this.phone = phone;
 		this.gender = gender;

@@ -11,6 +11,7 @@
 <!-- 타입엘리어스 설정 -->
 <typeAliases>
 	<typeAlias alias="Phone" type="com.bmj.phonebook.vo.Phone"/>
+	<typeAlias alias="Member" type="com.bmj.phonebook.vo.Member"/>
 	<typeAlias alias="PageVO" type="com.bmj.phonebook.vo.PageVO"/>
 </typeAliases>
 
@@ -28,6 +29,7 @@
 <!-- mapper 경로 설정 -->
 <mappers>
 	<mapper resource="com/bmj/phonebook/mapper/phonebook.xml"></mapper>
+	<mapper resource="com/bmj/phonebook/mapper/members.xml"></mapper>
 </mappers>
 
 
